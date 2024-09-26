@@ -1,3 +1,8 @@
+
+import chars
+import relics
+import weapons
+
 print('')
 print('GI: DAMAGE CALCULATOR')
 print('---------------------')
@@ -54,54 +59,85 @@ CoroaCR_S = 0
 CoroaCD_S = 1
 CoroaCura_S = 0
 
+#RESSONANCIAS
+resso_geo = 0.15
+resso_pyro = 0.25
+resso_hydro = 0.25
+resso_cryo = 0.15
+resso_dendro = 20
+
 #SUB-STATUS + BÔNUS DIVERSOS
 VidaFlat = 0
 VidaPorc = 0
-AtaqueFlat = 0 + 200 + 1000
-AtaquePorc = 0 + 0.276
+AtaqueFlat = 0 +35 +18 +51 +chars.benny_ult
+AtaquePorc = 0 +0.276 +relics.ritual_real_4 +relics.milelith_4 +resso_pyro
 DefesaFlat = 0
 DefesaPorc = 0
 EM = 0
-ER = 0
-CD = 0 + 0.384 + 0.4
-CR = 0 + 0.25 + 0.4
-BD = 0 + 0.15
+RecargaPorc = 0
+CritDmg = 0 +0.14 +0.14 +0.078 +0.062 +0.38
+CritRate = 0 +0.25 +relics.codice_obsidiana_4
+BonusElm = 0 +relics.codice_obsidiana_2 #+relics.perg_hero_4_2
+BonusFis = 0
+BonusAA = 0
+BonusCarregado = 0
+BonusImersivo = 0
+BonusSkill = 0 +weapons.earthshaker
+BonusUlt = 0
+ReductRes = 0 +relics.mem_flo_4
 
-#Multiplicadores
+#MULTIPLICADORES
 MultVida = 1+(AreiaVida_S*AreiaVida)+(CaliceVida_S*CaliceVida)+(CoroaVida_S*CoroaVida)+VidaPorc
 MultAtaque = 1+(AreiaAtaque_S*AreiaAtaque)+(CaliceAtaque_S*CaliceAtaque)+(CoroaAtaque_S*CoroaAtaque)+AtaquePorc
 MultDefesa = 1+(AreiaDefesa_S*AreiaDefesa)+(CaliceDefesa_S*CaliceDefesa)+(CoroaDefesa_S*CoroaDefesa)+DefesaPorc
 
-#Status Totais
+#STATUS TOTAIS
 VidaTotal = (VidaBase*MultVida)+FlorVida+VidaFlat
 AtaqueTotal = (AtaqueBase*MultAtaque)+PenaAtaque+AtaqueFlat
 DefesaTotal = (DefesaBase*MultDefesa)+DefesaFlat
 MaestriaElemental = (AreiaEM_S*AreiaEM)+(CaliceEM_S*CaliceEM)+(CoroaEM_S*CoroaEM)+EM
-RecargaTotal = (AreiaER_S*AreiaER)+ER
-DanoCritico = 0.5+(CoroaCD_S*CoroaCD)+CD
-TaxaCritica = 0.05+(CoroaCR_S*CoroaCR)+CR
-DanoElemental = (CaliceED_S*CaliceED)+BD
-DanoFisico = (CalicePD_S*CalicePD)+BD
+RecargaTotal = (AreiaER_S*AreiaER)+RecargaPorc
+DanoCritico = 0.5+(CoroaCD_S*CoroaCD)+CritDmg
+TaxaCritica = 0.05+(CoroaCR_S*CoroaCR)+CritRate
+DanoElemental = (CaliceED_S*CaliceED)+BonusElm
+DanoFisico = (CalicePD_S*CalicePD)+BonusFis
 
-#Talentos
-SkillDisparos = AtaqueTotal*1.03*(1+DanoElemental)*(1+DanoCritico)
-SkillCanhao = AtaqueTotal*12.37*(1+DanoElemental+0.3)*(1+DanoCritico)
-Ult = AtaqueTotal*2.05*(1+DanoElemental)*(1+DanoCritico)
+#STATUS INIMIGO
+EnemyLevel = 104
+EnemyDef = 190/((EnemyLevel+100)+190)
+EnemyRes = 0-ReductRes
+EnemyReduct = (1-EnemyDef)*(1-EnemyRes)
+print('< Inimigo >')
+print(f'Resistencia: {int(EnemyRes*100)}%')
+print(f'Mult.Defesa: {int(EnemyDef*100)}%')
+print('')
 
+#DANO DOS TALENTOS
+Talento = 3.2*AtaqueTotal*0
+SkillDisparos = AtaqueTotal*1.03*(1+DanoElemental)*EnemyReduct*(1+DanoCritico)
+SkillCanhao = (AtaqueTotal*12.7+Talento)*(1+DanoElemental+BonusSkill)*EnemyReduct*(1+DanoCritico)
+Ult = AtaqueTotal*2.05*(1+DanoElemental)*EnemyReduct*(1+DanoCritico)
+
+#EXIBICAO
 print('< Personagem >')
 print(f'Vida: {int(VidaTotal)}')
 print(f'Ataque: {int(AtaqueTotal)}')
 print(f'Defesa: {int(DefesaTotal)}')
 print(f'Maest.Elemental: {int(MaestriaElemental)}')
-print(f'Recarga: {RecargaTotal}%')
+print(f'Recarga: {int(RecargaTotal)}%')
 print(f'Dano Critico: {int(DanoCritico*100)}%')
 print(f'Taxa Critica: {int(TaxaCritica*100)}%')
 print(f'Dano Elemental: {int(DanoElemental*100)}%')
-print(f'Dano Fisico: {int(DanoFisico)}%')
+print(f'Dano Fisico: {int(DanoFisico*100)}%')
+print(f'Bonus de Dano (Ataque Normal): {int(BonusAA*100)}%')
+print(f'Bonus de Dano (Ataque Carregado): {int(BonusCarregado*100)}%')
+print(f'Bonus de Dano (Ataque Imersivo): {int(BonusImersivo*100)}%')
+print(f'Bonus de Dano (Skill): {int(BonusSkill*100)}%')
+print(f'Bonus de Dano (Ult): {int(BonusUlt*100)}%')
 print('')
 print('< Talentos >')
 print(f'Skill (mini-disparos): {int(SkillDisparos)}')
-print(f'Skill (canhão): {int(SkillCanhao)}')
+print(f'Skill (canhao): {int(SkillCanhao)}')
 print(f'Ult (laser): {int(Ult)}')
 print('')
-print(f'Dano Rotação: {int((SkillDisparos*4+SkillCanhao+Ult)*4)}')
+print(f'Dano Rotacao: {int((SkillDisparos*4+SkillCanhao+Ult)*4)}')
