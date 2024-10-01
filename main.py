@@ -1,5 +1,5 @@
 
-import chars
+import sups
 import relics
 import weapons
 
@@ -9,11 +9,12 @@ print('---------------------')
 print('')
 
 #STATUS BASE
-VidaBase = 12858
-AtaqueChar = 332
-AtaqueArma = 565
+Nome = 'Gaming'
+VidaBase = 11419
+AtaqueChar = 302
+AtaqueArma = weapons.serp_spine_base
 AtaqueBase = AtaqueChar + AtaqueArma
-DefesaBase = 802
+DefesaBase = 703
 
 #VALOR DOS ARTEFATOS NO +20
 FlorVida = 4780
@@ -67,24 +68,24 @@ resso_cryo = 0.15
 resso_dendro = 20
 
 #SUB-STATUS + BÔNUS DIVERSOS
+C2 = 0.2
 VidaFlat = 0
 VidaPorc = 0
-AtaqueFlat = 0 +35 +18 +51 +chars.benny_ult
-AtaquePorc = 0 +0.276 +relics.ritual_real_4 +relics.milelith_4 +resso_pyro
+AtaqueFlat = 0 +33 +sups.benny_ult
+AtaquePorc = 0 +0.24 +0.082 +0.11 +0.157 +0.152 +resso_pyro +relics.ritual_real_4 +C2
 DefesaFlat = 0
 DefesaPorc = 0
-EM = 0
+EM = 0 + 37
 RecargaPorc = 0
-CritDmg = 0 +0.14 +0.14 +0.078 +0.062 +0.38
-CritRate = 0 +0.25 +relics.codice_obsidiana_4
-BonusElm = 0 +relics.codice_obsidiana_2 #+relics.perg_hero_4_2
+CritDmg = 0 +0.256 +0.202 +0.07 +0.109
+CritRate = 0 +0.035 +0.035 +0.07 +0.035 +weapons.serp_spine_stat
+BonusElm = 0 +weapons.serp_spine_p1 +sups.furina_ult +sups.yelan_passiva
 BonusFis = 0
 BonusAA = 0
 BonusCarregado = 0
 BonusImersivo = 0
-BonusSkill = 0 +weapons.earthshaker
+BonusSkill = 0
 BonusUlt = 0
-ReductRes = 0 +relics.mem_flo_4
 
 #MULTIPLICADORES
 MultVida = 1+(AreiaVida_S*AreiaVida)+(CaliceVida_S*CaliceVida)+(CoroaVida_S*CoroaVida)+VidaPorc
@@ -103,23 +104,48 @@ DanoElemental = (CaliceED_S*CaliceED)+BonusElm
 DanoFisico = (CalicePD_S*CalicePD)+BonusFis
 
 #STATUS INIMIGO
-EnemyLevel = 104
-EnemyDef = 190/((EnemyLevel+100)+190)
-EnemyRes = 0-ReductRes
-EnemyReduct = (1-EnemyDef)*(1-EnemyRes)
+EnemyLevel = 103
+EnemyResEl = 0.1
+EnemyResFis = 0.1
+ReductDef = 0
+ReductRes = 0
+#-------------------------------------------------------
+RD = 1-ReductDef
+EnemyDef = 190/(RD*(EnemyLevel+100)+190)
+EnemyRes = EnemyResEl - ReductRes
+if EnemyRes < 0:
+    EnemyReduct = EnemyDef*(1-(EnemyRes/2))
+elif EnemyRes >= 0 and EnemyRes < 0.75:
+    EnemyReduct = EnemyDef*(1-EnemyRes)
+elif EnemyRes >= 0.75:
+    EnemyReduct = EnemyDef*(1/(4*EnemyRes+1))
 print('< Inimigo >')
+print(f'Nivel: {int(EnemyLevel)}')
 print(f'Resistencia: {int(EnemyRes*100)}%')
-print(f'Mult.Defesa: {int(EnemyDef*100)}%')
+print(f'Defesa: {int((1-EnemyDef)*100)}%')
+print(f'Dano Tankado: {int((1-EnemyReduct)*100)}%')
 print('')
 
+#CALCULO REACOES
+AtivarReacao = 1
+MeltPyro = 2
+MeltCryo = 1.5
+VapoHydro = 2
+VapoPyro = 1.5
+BonusAmpEM = 2.78*(MaestriaElemental/(MaestriaElemental+1400))*1
+BonusMeltVapo = 0
+MultAmp = (VapoPyro*(1+BonusAmpEM+BonusMeltVapo))**AtivarReacao
+
 #DANO DOS TALENTOS
-Talento = 3.2*AtaqueTotal*0
-SkillDisparos = AtaqueTotal*1.03*(1+DanoElemental)*EnemyReduct*(1+DanoCritico)
-SkillCanhao = (AtaqueTotal*12.7+Talento)*(1+DanoElemental+BonusSkill)*EnemyReduct*(1+DanoCritico)
-Ult = AtaqueTotal*2.05*(1+DanoElemental)*EnemyReduct*(1+DanoCritico)
+Passiva = 0.2
+AtaqueNormal_H1 = AtaqueTotal*1.54*(1+DanoElemental+BonusAA)*EnemyReduct*MultAmp*(1+DanoCritico)
+AtaqueNormal_H2 = AtaqueTotal*1.45*(1+DanoElemental+BonusAA)*EnemyReduct*MultAmp*(1+DanoCritico)
+AtaqueNormal_H3 = AtaqueTotal*1.95*(1+DanoElemental+BonusAA)*EnemyReduct*MultAmp*(1+DanoCritico)
+SkillImersivo = AtaqueTotal*4.89*(1+DanoElemental+BonusSkill+BonusImersivo+Passiva)*EnemyReduct*MultAmp*(1+DanoCritico)
+Ult = AtaqueTotal*6.29*(1+DanoElemental+BonusUlt)*EnemyReduct*MultAmp*(1+DanoCritico)
 
 #EXIBICAO
-print('< Personagem >')
+print(f'< {Nome} >')
 print(f'Vida: {int(VidaTotal)}')
 print(f'Ataque: {int(AtaqueTotal)}')
 print(f'Defesa: {int(DefesaTotal)}')
@@ -136,8 +162,10 @@ print(f'Bonus de Dano (Skill): {int(BonusSkill*100)}%')
 print(f'Bonus de Dano (Ult): {int(BonusUlt*100)}%')
 print('')
 print('< Talentos >')
-print(f'Skill (mini-disparos): {int(SkillDisparos)}')
-print(f'Skill (canhao): {int(SkillCanhao)}')
-print(f'Ult (laser): {int(Ult)}')
+print(f'Ataque Normal (H1)): {int(AtaqueNormal_H1)}')
+print(f'Ataque Normal (H2)): {int(AtaqueNormal_H2)}')
+print(f'Ataque Normal (H3)): {int(AtaqueNormal_H3)}')
+print(f'Skill (imersivo): {int(SkillImersivo)}')
+print(f'Ult: {int(Ult)}')
 print('')
-print(f'Dano Rotacao: {int((SkillDisparos*4+SkillCanhao+Ult)*4)}')
+print(f'Dano Rotacao: {int(Ult+(AtaqueNormal_H1+AtaqueNormal_H2+AtaqueNormal_H3+SkillImersivo)*4)}')
