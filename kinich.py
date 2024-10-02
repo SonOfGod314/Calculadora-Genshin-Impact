@@ -125,6 +125,30 @@ print(f'Defesa: {int((1-EnemyDef)*100)}%')
 print(f'Dano Tankado: {int((1-EnemyReduct)*100)}%')
 print('')
 
+#CALCULO REACOES
+TriggerReact = 1
+BonusCharLevel = 1446.85
+BonusAmpReac = 0
+BonusTransReac = 0
+#------------------------------------------
+MeltPyro = 2
+MeltCryo = 1.5
+VapoHydro = 2
+VapoPyro = 1.5
+Burn = 0.25
+SuperCond = 0.5
+Swirl = 0.6
+ElecCharg = 1.2
+Shatt = 1.5
+Overload = 2
+Bloom = 2
+Burgeon = 3
+HypBloom = 3
+BonusAmpEM = 2.78*(MaestriaElemental/(MaestriaElemental+1400))
+BonusTransEM = 16*(MaestriaElemental/(MaestriaElemental+2000))
+MultAmp = (VapoPyro*(1+BonusAmpEM+BonusAmpReac))**TriggerReact
+MultTrans = (Burn*BonusCharLevel*(1+BonusTransEM+BonusTransReac)*EnemyReduct)**TriggerReact
+
 #DANO DOS TALENTOS
 Talento = 3.2*AtaqueTotal
 SkillDisparos = AtaqueTotal*1.03*(1+DanoElemental+BonusAA)*EnemyReduct*(1+DanoCritico)
@@ -141,13 +165,15 @@ print(f'Maest.Elemental: {int(MaestriaElemental)}')
 print(f'Recarga: {int(RecargaTotal)}%')
 print(f'Dano Critico: {int(DanoCritico*100)}%')
 print(f'Taxa Critica: {int(TaxaCritica*100)}%')
-print(f'Dano Elemental: {int(DanoElemental*100)}%')
-print(f'Dano Fisico: {int(DanoFisico*100)}%')
-print(f'Bonus de Dano (Ataque Normal): {int(BonusAA*100)}%')
-print(f'Bonus de Dano (Ataque Carregado): {int(BonusCarregado*100)}%')
-print(f'Bonus de Dano (Ataque Imersivo): {int(BonusImersivo*100)}%')
-print(f'Bonus de Dano (Skill): {int(BonusSkill*100)}%')
-print(f'Bonus de Dano (Ult): {int(BonusUlt*100)}%')
+print(f'Bonus Elemental: {int(DanoElemental*100)}%')
+print(f'Bonus Fisico: {int(DanoFisico*100)}%')
+print(f'Bonus de Ataque Normal: {int(BonusAA*100)}%')
+print(f'Bonus de Ataque Carregado: {int(BonusCarregado*100)}%')
+print(f'Bonus de Ataque Imersivo: {int(BonusImersivo*100)}%')
+print(f'Bonus de Skill: {int(BonusSkill*100)}%')
+print(f'Bonus de Ult: {int(BonusUlt*100)}%')
+print(f'Amplificador de Reacao: {(MultAmp):.2f}')
+print(f'Reacao Transformativa: {int(MultTrans)}')
 print('')
 print('< Talentos >')
 print(f'Skill (AA): {int(SkillDisparos)}')
