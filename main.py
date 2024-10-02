@@ -9,12 +9,12 @@ print('---------------------')
 print('')
 
 #STATUS BASE
-Nome = 'Gaming'
-VidaBase = 11419
-AtaqueChar = 302
-AtaqueArma = weapons.serp_spine_base
+Nome = #(nome do perseonagem)
+VidaBase = #(vida base no nivel 90)
+AtaqueChar = #(ataque base no nivel 90)
+AtaqueArma = #weapons.(arma)_base
 AtaqueBase = AtaqueChar + AtaqueArma
-DefesaBase = 703
+DefesaBase = #(defesa base no nivel 90)
 
 #VALOR DOS ARTEFATOS NO +20
 FlorVida = 4780
@@ -40,7 +40,7 @@ CoroaCura = 0.359
 
 #SELETOR DE ARTEFATOS
 AreiaVida_S = 0
-AreiaAtaque_S = 1
+AreiaAtaque_S = 0
 AreiaDefesa_S = 0
 AreiaEM_S = 0
 AreiaER_S = 0
@@ -49,7 +49,7 @@ CaliceVida_S = 0
 CaliceAtaque_S = 0
 CaliceDefesa_S = 0
 CaliceEM_S = 0
-CaliceED_S = 1
+CaliceED_S = 0
 CalicePD_S = 0
 #--------------------
 CoroaVida_S = 0
@@ -57,7 +57,7 @@ CoroaAtaque_S = 0
 CoroaDefesa_S = 0
 CoroaEM_S = 0
 CoroaCR_S = 0
-CoroaCD_S = 1
+CoroaCD_S = 0
 CoroaCura_S = 0
 
 #RESSONANCIAS
@@ -68,20 +68,19 @@ resso_cryo = 0.15
 resso_dendro = 20
 
 #SUB-STATUS + BÔNUS DIVERSOS
-C2 = 0.2
 VidaFlat = 0
 VidaPorc = 0
-AtaqueFlat = 0 +33 +sups.benny_ult
-AtaquePorc = 0 +0.24 +0.082 +0.11 +0.157 +0.152 +resso_pyro +relics.ritual_real_4 +C2
+AtaqueFlat = 0 
+AtaquePorc = 0 
 DefesaFlat = 0
 DefesaPorc = 0
-EM = 0 + 37
+EM = 0
 RecargaPorc = 0
-CritDmg = 0 +0.256 +0.202 +0.07 +0.109
-CritRate = 0 +0.035 +0.035 +0.07 +0.035 +weapons.serp_spine_stat
-BonusElm = 0 +weapons.serp_spine_p1 +sups.furina_ult +sups.yelan_passiva
+CritDmg = 0 
+CritRate = 0
+BonusElm = 0 
 BonusFis = 0
-BonusAA = 0
+BonusAA = 0 
 BonusCarregado = 0
 BonusImersivo = 0
 BonusSkill = 0
@@ -104,9 +103,9 @@ DanoElemental = (CaliceED_S*CaliceED)+BonusElm
 DanoFisico = (CalicePD_S*CalicePD)+BonusFis
 
 #STATUS INIMIGO
-EnemyLevel = 103
-EnemyResEl = 0.1
-EnemyResFis = 0.1
+EnemyLevel = #(nivel do inimigo)
+EnemyResEl = #(resistencia elemental)
+EnemyResFis = #(resistencia fisica)
 ReductDef = 0
 ReductRes = 0
 #-------------------------------------------------------
@@ -127,22 +126,33 @@ print(f'Dano Tankado: {int((1-EnemyReduct)*100)}%')
 print('')
 
 #CALCULO REACOES
-AtivarReacao = 1
+TriggerReact = 1
+BonusCharLevel = 1446.85
+BonusAmpReac = 0
+BonusTransReac = 0
+#------------------------------------------
 MeltPyro = 2
 MeltCryo = 1.5
 VapoHydro = 2
 VapoPyro = 1.5
-BonusAmpEM = 2.78*(MaestriaElemental/(MaestriaElemental+1400))*1
-BonusMeltVapo = 0
-MultAmp = (VapoPyro*(1+BonusAmpEM+BonusMeltVapo))**AtivarReacao
+Burn = 0.25
+SuperCond = 0.5
+Swirl = 0.6
+ElecCharg = 1.2
+Shatt = 1.5
+Overload = 2
+Bloom = 2
+Burgeon = 3
+HypBloom = 3
+BonusAmpEM = 2.78*(MaestriaElemental/(MaestriaElemental+1400))
+BonusTransEM = 16*(MaestriaElemental/(MaestriaElemental+2000))
+MultAmp = (VapoPyro*(1+BonusAmpEM+BonusAmpReac))**TriggerReact
+MultTrans = (Burn*BonusCharLevel*(1+BonusTransEM+BonusTransReac)*EnemyReduct)**TriggerReact
 
 #DANO DOS TALENTOS
-Passiva = 0.2
-AtaqueNormal_H1 = AtaqueTotal*1.54*(1+DanoElemental+BonusAA)*EnemyReduct*MultAmp*(1+DanoCritico)
-AtaqueNormal_H2 = AtaqueTotal*1.45*(1+DanoElemental+BonusAA)*EnemyReduct*MultAmp*(1+DanoCritico)
-AtaqueNormal_H3 = AtaqueTotal*1.95*(1+DanoElemental+BonusAA)*EnemyReduct*MultAmp*(1+DanoCritico)
-SkillImersivo = AtaqueTotal*4.89*(1+DanoElemental+BonusSkill+BonusImersivo+Passiva)*EnemyReduct*MultAmp*(1+DanoCritico)
-Ult = AtaqueTotal*6.29*(1+DanoElemental+BonusUlt)*EnemyReduct*MultAmp*(1+DanoCritico)
+AtaqueNormal =
+Skill =
+Ult =
 
 #EXIBICAO
 print(f'< {Nome} >')
@@ -153,19 +163,19 @@ print(f'Maest.Elemental: {int(MaestriaElemental)}')
 print(f'Recarga: {int(RecargaTotal)}%')
 print(f'Dano Critico: {int(DanoCritico*100)}%')
 print(f'Taxa Critica: {int(TaxaCritica*100)}%')
-print(f'Dano Elemental: {int(DanoElemental*100)}%')
-print(f'Dano Fisico: {int(DanoFisico*100)}%')
-print(f'Bonus de Dano (Ataque Normal): {int(BonusAA*100)}%')
-print(f'Bonus de Dano (Ataque Carregado): {int(BonusCarregado*100)}%')
-print(f'Bonus de Dano (Ataque Imersivo): {int(BonusImersivo*100)}%')
-print(f'Bonus de Dano (Skill): {int(BonusSkill*100)}%')
-print(f'Bonus de Dano (Ult): {int(BonusUlt*100)}%')
+print(f'Bonus Elemental: {int(DanoElemental*100)}%')
+print(f'Bonus Fisico: {int(DanoFisico*100)}%')
+print(f'Bonus de Ataque Normal: {int(BonusAA*100)}%')
+print(f'Bonus de Ataque Carregado: {int(BonusCarregado*100)}%')
+print(f'Bonus de Ataque Imersivo: {int(BonusImersivo*100)}%')
+print(f'Bonus de Skill: {int(BonusSkill*100)}%')
+print(f'Bonus de Ult: {int(BonusUlt*100)}%')
+print(f'Amplificador de Reacao: {(MultAmp):.2f}')
+print(f'Reacao Transformativa: {int(MultTrans)}')
 print('')
 print('< Talentos >')
-print(f'Ataque Normal (H1)): {int(AtaqueNormal_H1)}')
-print(f'Ataque Normal (H2)): {int(AtaqueNormal_H2)}')
-print(f'Ataque Normal (H3)): {int(AtaqueNormal_H3)}')
-print(f'Skill (imersivo): {int(SkillImersivo)}')
+print(f'Ataque Normal: {int(AtaqueNormal)}')
+print(f'Skill: {int(Skill)}')
 print(f'Ult: {int(Ult)}')
 print('')
-print(f'Dano Rotacao: {int(Ult+(AtaqueNormal_H1+AtaqueNormal_H2+AtaqueNormal_H3+SkillImersivo)*4)}')
+print(f'Dano Rotacao: {int()}')
