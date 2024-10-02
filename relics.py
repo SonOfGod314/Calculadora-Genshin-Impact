@@ -23,3 +23,7 @@ mem_flo_4 = 0.3
 perg_hero_2 = 6
 perg_hero_4_1 = 0.12
 perg_hero_4_2 = 0.4
+
+#bruxa_das_chamas_carmesin
+bruxa_chamas_2 = 0.15
+bruxa_chamas_4 = 0.15
