@@ -15,6 +15,7 @@ AtaqueChar = #(ataque base no nivel 90)
 AtaqueArma = #weapons.(arma)_base
 AtaqueBase = AtaqueChar + AtaqueArma
 DefesaBase = #(defesa base no nivel 90)
+StatusAscensao = #(atributo de ascensao)
 
 #VALOR DOS ARTEFATOS NO +20
 FlorVida = 4780
