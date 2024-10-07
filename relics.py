@@ -21,9 +21,21 @@ mem_flo_4 = 0.3
 
 #pergaminho_do_heroi
 perg_hero_2 = 6
-perg_hero_4_1 = 0.12
-perg_hero_4_2 = 0.4
+perg_hero_4 = 0.4
 
 #bruxa_das_chamas_carmesin
 bruxa_chamas_2 = 0.15
 bruxa_chamas_4 = 0.15
+
+#cacador_das_sombras
+cacador_sombras_2 = 0.15
+cacador_sombras_stacks = 1
+cacador_sombras_4 = 0.12*cacador_sombras_stacks
+
+#sombra_verde
+sombra_verde_2 = 0.15
+sombra_verde_4 = 0.4
+
+#heroi_invernal
+heroi_invernal_2 = 0.15
+heroi_invernal_4 = 0.2
