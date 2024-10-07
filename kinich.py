@@ -15,6 +15,7 @@ AtaqueChar = 332
 AtaqueArma = weapons.earthshaker_base
 AtaqueBase = AtaqueChar + AtaqueArma
 DefesaBase = 802
+StatusAscensao = 0.384
 
 #VALOR DOS ARTEFATOS NO +20
 FlorVida = 4780
@@ -76,7 +77,7 @@ DefesaFlat = 0
 DefesaPorc = 0
 EM = 0
 RecargaPorc = 0
-CritDmg = 0 +0.14 +0.14 +0.078 +0.062 +0.38 #+0.08
+CritDmg = 0 +0.14 +0.14 +0.078 +0.062 +StatusAscensao #+0.08
 CritRate = 0 +0.25 +relics.codice_obsidiana_4
 BonusElm = 0 +relics.codice_obsidiana_2 #+relics.perg_hero_4_2 
 BonusFis = 0
