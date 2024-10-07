@@ -15,6 +15,7 @@ AtaqueChar = 302
 AtaqueArma = weapons.serp_spine_base
 AtaqueBase = AtaqueChar + AtaqueArma
 DefesaBase = 703
+StatusAscensao = 0.24
 
 #VALOR DOS ARTEFATOS NO +20
 FlorVida = 4780
@@ -74,20 +75,21 @@ C6_2 = 0.4
 VidaFlat = 0
 VidaPorc = 0
 AtaqueFlat = 0 +33 +sups.benny_ult
-AtaquePorc = 0 +0.24 +0.082 +0.11 +0.157 +0.152 +resso_pyro +relics.ritual_real_4 +C2
+AtaquePorc = 0 +StatusAscensao +0.082 +0.11 +0.157 +0.152 +resso_pyro +relics.ritual_real_4 +C2
 DefesaFlat = 0
 DefesaPorc = 0
 EM = 0 + 37
 RecargaPorc = 0
 CritDmg = 0 +0.256 +0.202 +0.07 +0.109
-CritRate = 0 +0.035 +0.035 +0.07 +0.035 +weapons.serp_spine_stat
-BonusElm = 0 +weapons.serp_spine_p1 +sups.furina_ult +sups.yelan_passiva +relics.bruxa_chamas_2
+CritRate = 0 +0.035 +0.035 +0.07 +0.035 +weapons.serp_spine_stat 
+BonusElm = 0 +weapons.serp_spine_p1 +relics.bruxa_chamas_2 +sups.yelan_passiva +sups.kazuha_buff
 BonusFis = 0
 BonusAA = 0
 BonusCarregado = 0
 BonusImersivo = 0
 BonusSkill = 0
 BonusUlt = 0
+#
 
 #MULTIPLICADORES
 MultVida = 1+(AreiaVida_S*AreiaVida)+(CaliceVida_S*CaliceVida)+(CoroaVida_S*CoroaVida)+VidaPorc
@@ -110,7 +112,7 @@ EnemyLevel = 103
 EnemyResEl = 0.1
 EnemyResFis = 0.1
 ReductDef = 0
-ReductRes = 0
+ReductRes = 0 +0.4
 #-------------------------------------------------------
 RD = 1-ReductDef
 EnemyDef = 190/(RD*(EnemyLevel+100)+190)
@@ -154,10 +156,11 @@ MultTrans = (Burn*BonusCharLevel*(1+BonusTransEM+BonusTransReac)*EnemyReduct)**T
 
 #DANO DOS TALENTOS
 Passiva = 0.2
+Suporte = sups.xianyun_ult*0
 AtaqueNormal_H1 = AtaqueTotal*1.54*(1+DanoElemental+BonusAA)*EnemyReduct*MultAmp*(1+DanoCritico)
 AtaqueNormal_H2 = AtaqueTotal*1.45*(1+DanoElemental+BonusAA)*EnemyReduct*MultAmp*(1+DanoCritico)
 AtaqueNormal_H3 = AtaqueTotal*1.95*(1+DanoElemental+BonusAA)*EnemyReduct*MultAmp*(1+DanoCritico)
-SkillImersivo = AtaqueTotal*4.89*(1+DanoElemental+BonusSkill+BonusImersivo+Passiva)*EnemyReduct*MultAmp*(1+DanoCritico)
+SkillImersivo = (AtaqueTotal*4.89+Suporte)*(1+DanoElemental+BonusSkill+BonusImersivo+Passiva)*EnemyReduct*MultAmp*(1+DanoCritico)
 Ult = AtaqueTotal*6.29*(1+DanoElemental+BonusUlt)*EnemyReduct*MultAmp*(1+DanoCritico)
 
 #EXIBICAO
@@ -186,4 +189,4 @@ print(f'Ataque Normal (H3)): {int(AtaqueNormal_H3)}')
 print(f'Skill (imersivo): {int(SkillImersivo)}')
 print(f'Ult: {int(Ult)}')
 print('')
-print(f'Dano Rotacao: {int(Ult+(AtaqueNormal_H1+AtaqueNormal_H2+AtaqueNormal_H3+SkillImersivo)*4)}')
+print(f'Dano Rotacao: {int(Ult+(AtaqueNormal_H1+AtaqueNormal_H2+SkillImersivo)*5)}')
