@@ -39,3 +39,12 @@ sombra_verde_4 = 0.4
 #heroi_invernal
 heroi_invernal_2 = 0.15
 heroi_invernal_4 = 0.2
+
+#trupe_itinerante
+trupe_iti_2 = 80
+trupe_iti_4 = 0.35
+
+#selo_da_insulacao
+selo_2 = 0.2
+selo_rec = 252
+selo_4 = 0.25*(selo_rec/100)
