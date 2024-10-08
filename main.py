@@ -9,13 +9,13 @@ print('---------------------')
 print('')
 
 #STATUS BASE
-Nome = #(nome do perseonagem)
-VidaBase = #(vida base no nivel 90)
-AtaqueChar = #(ataque base no nivel 90)
-AtaqueArma = #weapons.(arma)_base
+Nome = 'nome'
+VidaBase = 
+AtaqueChar = 
+AtaqueArma = 
 AtaqueBase = AtaqueChar + AtaqueArma
-DefesaBase = #(defesa base no nivel 90)
-StatusAscensao = #(atributo de ascensao)
+DefesaBase = 
+StatusAscensao =
 
 #VALOR DOS ARTEFATOS NO +20
 FlorVida = 4780
@@ -104,9 +104,9 @@ DanoElemental = (CaliceED_S*CaliceED)+BonusElm
 DanoFisico = (CalicePD_S*CalicePD)+BonusFis
 
 #STATUS INIMIGO
-EnemyLevel = #(nivel do inimigo)
-EnemyResEl = #(resistencia elemental)
-EnemyResFis = #(resistencia fisica)
+EnemyLevel = 103
+EnemyResEl = 0.1
+EnemyResFis = 0.1
 ReductDef = 0
 ReductRes = 0
 #-------------------------------------------------------
@@ -152,7 +152,7 @@ MultAmp = (VapoPyro*(1+BonusAmpEM+BonusAmpReac))**TriggerReact
 MultTrans = (Burn*BonusCharLevel*(1+BonusTransEM+BonusTransReac)*EnemyReduct)**TriggerReact
 
 #DANO DOS TALENTOS
-AtaqueNormal =
+AtaqueNormal = AtaqueTotal*1*(1+DanoElemental+BonusAA)*EnemyReduct*(1+DanoCritico)
 Skill =
 Ult =
 
