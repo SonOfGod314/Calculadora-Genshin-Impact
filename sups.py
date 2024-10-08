@@ -3,7 +3,7 @@
 benny_ult = 1110
 
 #furina
-fanfarra = 200
+fanfarra = 100
 furina_ult = (0.25*fanfarra)/100
 
 #yelan
@@ -15,3 +15,6 @@ kazuha_buff = 0.4
 
 #xianyun
 xianyun_ult = 6000
+
+#xilonen
+xilonen_skill = 0.36
