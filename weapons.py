@@ -26,3 +26,26 @@ epi_prof_stat = 0.276
 epi_prof_p1 = 0.18
 epi_prof_vida_considerada = 0.25*20000
 epi_prof_p2 = 0.036*epi_prof_vida_considerada
+
+#quebra_demonios_R5
+quebra_demo_base = 454
+quebra_demo_stat = 0.55
+quebra_demo_cond = 0
+quebra_demo_p1 = 0.24*(2**quebra_demo_cond)
+
+#prototipo_da_luz_lunar_palida_R5
+luz_lunar_base = 510
+luz_lunar_stat = 0.414
+luz_lunar_p1 = 0.72
+
+#amos
+amos_base = 608
+amos_stat = 0.496
+amos_p1 = 0.12
+amos_p2 = 0.4
+
+#fisgada_R3
+fisgada_base = 510
+fisgada_stat = 0.459
+fisgada_p1 = 0.24
+fisgada_p2 = 0.09
