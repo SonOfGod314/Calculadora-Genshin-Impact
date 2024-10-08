@@ -24,7 +24,7 @@ AreiaVida = 0.466
 AreiaAtaque = 0.466
 AreiaDefesa = 0.583
 AreiaEM = 186.5
-AreiaER = 51.8
+AreiaER = 0.518
 CaliceVida = 0.466
 CaliceAtaque = 0.466
 CaliceDefesa = 0.583
@@ -162,7 +162,7 @@ print(f'Vida: {int(VidaTotal)}')
 print(f'Ataque: {int(AtaqueTotal)}')
 print(f'Defesa: {int(DefesaTotal)}')
 print(f'Maest.Elemental: {int(MaestriaElemental)}')
-print(f'Recarga: {int(RecargaTotal)}%')
+print(f'Recarga: {int(RecargaTotal*100)}%')
 print(f'Dano Critico: {int(DanoCritico*100)}%')
 print(f'Taxa Critica: {int(TaxaCritica*100)}%')
 print(f'Bonus Elemental: {int(DanoElemental*100)}%')
