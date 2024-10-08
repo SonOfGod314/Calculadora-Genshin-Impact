@@ -147,6 +147,7 @@ Burgeon = 3
 HypBloom = 3
 BonusAmpEM = 2.78*(MaestriaElemental/(MaestriaElemental+1400))
 BonusTransEM = 16*(MaestriaElemental/(MaestriaElemental+2000))
+#--------------------------------------------
 MultAmp = (VapoPyro*(1+BonusAmpEM+BonusAmpReac))**TriggerReact
 MultTrans = (Burn*BonusCharLevel*(1+BonusTransEM+BonusTransReac)*EnemyReduct)**TriggerReact
 
