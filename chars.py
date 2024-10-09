@@ -73,13 +73,11 @@ Passiva = 0.2
 Suporte = sups.xianyun_ult*0
 AtaqueNormal_H1 = AtaqueTotal*1.54*(1+DanoElemental+BonusAA)*EnemyReduct*MultAmp*(1+DanoCritico)
 AtaqueNormal_H2 = AtaqueTotal*1.45*(1+DanoElemental+BonusAA)*EnemyReduct*MultAmp*(1+DanoCritico)
-AtaqueNormal_H3 = AtaqueTotal*1.95*(1+DanoElemental+BonusAA)*EnemyReduct*MultAmp*(1+DanoCritico)
 SkillImersivo = (AtaqueTotal*4.89+Suporte)*(1+DanoElemental+BonusSkill+BonusImersivo+Passiva)*EnemyReduct*MultAmp*(1+DanoCritico)
 Ult = AtaqueTotal*6.29*(1+DanoElemental+BonusUlt)*EnemyReduct*MultAmp*(1+DanoCritico)
 print('< Talentos >')
 print(f'Ataque Normal (H1)): {int(AtaqueNormal_H1)}')
 print(f'Ataque Normal (H2)): {int(AtaqueNormal_H2)}')
-print(f'Ataque Normal (H3)): {int(AtaqueNormal_H3)}')
 print(f'Skill (imersivo): {int(SkillImersivo)}')
 print(f'Ult: {int(Ult)}')
 print('')
