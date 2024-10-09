@@ -49,3 +49,19 @@ fisgada_base = 510
 fisgada_stat = 0.459
 fisgada_p1 = 0.24
 fisgada_p2 = 0.09
+
+#lanca_do_duelo_R1
+lanca_duelo_base = 454
+lanca_duelo_stat = 0.368
+lanca_duelo_p1 = 0.16
+lanca_duelo_p2 = 0.24
+
+#cancao_do_fiorde_R1
+cancao_fiorde_base = 510
+cancao_fiorde_stat = 0.276
+cancao_fiorde_p1 = 120
+
+#perdicao_do_dragao_R5
+perd_drag_base = 454
+perd_drag_stat = 221
+perd_drag_p1 = 0.36
