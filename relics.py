@@ -48,3 +48,7 @@ trupe_iti_4 = 0.35
 selo_2 = 0.2
 selo_rec = 252
 selo_4 = 0.25*(selo_rec/100)
+
+#cronicas_deserto
+cronicas_deserto_2 = 0.15
+cronicas_deserto_4 = 0.4
