@@ -18,3 +18,10 @@ xianyun_ult = 6000
 
 #xilonen
 xilonen_skill = 0.36
+
+#faruzan
+faruzan_ult_buff = 0.38
+faruzan_ult_debuff = 0.3
+faruzan_passiva = 0.32*650
+faruzan_c6 = 0.4
+
