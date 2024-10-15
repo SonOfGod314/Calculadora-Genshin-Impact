@@ -282,3 +282,44 @@ print(f'Ataque Carregado: {int(AtaqueCarregado)}')
 print(f'Ult: {int(Ult)}')
 print('')
 print(f'Dano Rotacao: {int(Ult+(AtaqueNormal+AtaqueCarregado)*10)}')
+
+#Chasca
+Nome = 'Chasca'
+VidaBase = 9797
+AtaqueChar = 346
+AtaqueArma = weapons.cancao_silencio_base
+AtaqueBase = AtaqueChar + AtaqueArma
+DefesaBase = 614
+StatusAscensao = 0.192
+#--------------------------------------
+VidaFlat = 0
+VidaPorc = 0
+AtaqueFlat = 0 +sups.benny_ult
+AtaquePorc = 0 +0.3 +weapons.cancao_silencio_stat +relics.ritual_real_4
+DefesaFlat = 0
+DefesaPorc = 0
+EM = 0 +100
+RecargaPorc = 0
+CritDmg = 0 +0.4 +sups.faruzan_c6
+CritRate = 0 +0.25 +StatusAscensao
+BonusElm = 0 +weapons.cancao_silencio_p1 +relics.cronicas_deserto_2 +sups.furina_ult +sups.faruzan_ult_buff
+BonusFis = 0
+BonusAA = 0 +relics.cronicas_deserto_4
+BonusCarregado = 0 +relics.cronicas_deserto_4
+BonusImersivo = 0
+BonusSkill = 0
+BonusUlt = 0
+BonusFaruzanPassiva = sups.faruzan_passiva
+#--------------------------------------
+Skill_NormalShots = (AtaqueTotal*1.09+BonusFaruzanPassiva)*(1+DanoElemental+BonusCarregado)*EnemyReduct*(1+DanoCritico)
+Skill_ShineShots = (AtaqueTotal*3.45+BonusFaruzanPassiva)*(1+DanoElemental+BonusCarregado)*EnemyReduct*(1+DanoCritico)
+Ult_NormalShells = (AtaqueTotal*1.86+BonusFaruzanPassiva)*(1+DanoElemental+BonusUlt)*EnemyReduct*(1+DanoCritico)
+Ult_RadiantShells = (AtaqueTotal*3.72+BonusFaruzanPassiva)*(1+DanoElemental+BonusUlt)*EnemyReduct*(1+DanoCritico)
+DPR = Ult_NormalShells*2+Ult_RadiantShells*4+(Skill_NormalShots*4+Skill_ShineShots*2)*4
+print('< Talentos >')
+print(f'Skill (N-shots): {int(Skill_NormalShots)}')
+print(f'Skill (S-shots): {int(Skill_ShineShots)}')
+print(f'Ult (N-shells): {int(Ult_NormalShells)}')
+print(f'Ult (R-shells): {int(Ult_RadiantShells)}')
+print('')
+print(f'DPR: {int(DPR)}')
