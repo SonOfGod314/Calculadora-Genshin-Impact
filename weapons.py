@@ -65,3 +65,8 @@ cancao_fiorde_p1 = 120
 perd_drag_base = 454
 perd_drag_stat = 221
 perd_drag_p1 = 0.36
+
+#cancao_do_silencio_R3
+cancao_silencio_base = 510
+cancao_silencio_stat = 0.414
+cancao_silencio_p1 = 0.24
