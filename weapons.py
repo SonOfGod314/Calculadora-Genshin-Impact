@@ -70,3 +70,9 @@ perd_drag_p1 = 0.36
 cancao_silencio_base = 510
 cancao_silencio_stat = 0.414
 cancao_silencio_p1 = 0.24
+
+#ultimo_acorde_R5
+ultimo_acorde_base = 510
+ultimo_acorde_stat = 165
+ultimo_acorde_p1 = 0.48
+
