@@ -323,3 +323,45 @@ print(f'Ult (N-shells): {int(Ult_NormalShells)}')
 print(f'Ult (R-shells): {int(Ult_RadiantShells)}')
 print('')
 print(f'DPR: {int(DPR)}')
+
+#Ororon
+Nome = 'Ororon'
+VidaBase = 9244
+AtaqueChar = 244
+AtaqueArma = weapons.ultimo_acorde_base
+AtaqueBase = AtaqueChar + AtaqueArma
+DefesaBase = 586 
+StatusAscensao = 0.24
+#--------------------------------------
+VidaFlat = 0
+VidaPorc = 0
+AtaqueFlat = 0 
+AtaquePorc = 0 +StatusAscensao +relics.ritual_real_4
+DefesaFlat = 0
+DefesaPorc = 0
+EM = 0 +weapons.ultimo_acorde_stat +200
+RecargaPorc = 0
+CritDmg = 0 +0.5
+CritRate = 0 +0.20
+BonusElm = 0 
+BonusFis = 0
+BonusAA = 0 
+BonusCarregado = 0
+BonusImersivo = 0
+BonusSkill = 0 +weapons.ultimo_acorde_p1
+BonusUlt = 0 +weapons.ultimo_acorde_p1 +relics.ritual_real_2
+#--------------------------------------
+Skill = AtaqueTotal*4.19*(1+DanoElemental+BonusSkill)*EnemyReduct*(1+DanoCritico)
+Ult = AtaqueTotal*0.7*(1+DanoElemental+BonusUlt)*EnemyReduct*(1+DanoCritico)
+Passiva = AtaqueTotal*1.3*(1+DanoElemental)*EnemyReduct*(1+DanoCritico)
+Reacao = MultTrans
+DPR = Skill+(Ult*12)+(Passiva*6)+(Reacao*6)
+print('< Talentos >')
+print(f'Skill: {int(Skill)}')
+print(f'Ult: {int(Ult)}')
+print(f'Passiva: {int(Passiva)}')
+print(f'Reacao: {int(Reacao)}')
+print('')
+print(f'DPR: {int(DPR)}')
+
+
