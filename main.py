@@ -112,16 +112,17 @@ ReductRes = 0
 #-------------------------------------------------------
 RD = 1-ReductDef
 EnemyDef = 190/(RD*(EnemyLevel+100)+190)
-EnemyRes = EnemyResEl - ReductRes
-if EnemyRes < 0:
-    EnemyReduct = EnemyDef*(1-(EnemyRes/2))
-elif EnemyRes >= 0 and EnemyRes < 0.75:
-    EnemyReduct = EnemyDef*(1-EnemyRes)
-elif EnemyRes >= 0.75:
-    EnemyReduct = EnemyDef*(1/(4*EnemyRes+1))
+RR = EnemyResEl - ReductRes
+if RR < 0:
+    EnemyRes = 1-(RR/2)
+elif RR >= 0 and RR < 0.75:
+    EnemyRes = 1-RR
+elif RR >= 0.75:
+    EnemyRes = 1/(4*RR+1)
+EnemyReduct = EnemyDef*EnemyRes  
 print('< Inimigo >')
 print(f'Nivel: {int(EnemyLevel)}')
-print(f'Resistencia: {int(EnemyRes*100)}%')
+print(f'Resistencia: {int((RR)*100)}%')
 print(f'Defesa: {int((1-EnemyDef)*100)}%')
 print(f'Dano Tankado: {int((1-EnemyReduct)*100)}%')
 print('')
@@ -137,11 +138,11 @@ MeltCryo = 1.5
 VapoHydro = 2
 VapoPyro = 1.5
 Burn = 0.25
-SuperCond = 0.5
+SuperCond = 1.5
 Swirl = 0.6
-ElecCharg = 1.2
-Shatt = 1.5
-Overload = 2
+ElecCharg = 2
+Shatt = 3
+Overload = 2.75
 Bloom = 2
 Burgeon = 3
 HypBloom = 3
@@ -149,12 +150,13 @@ BonusAmpEM = 2.78*(MaestriaElemental/(MaestriaElemental+1400))
 BonusTransEM = 16*(MaestriaElemental/(MaestriaElemental+2000))
 #--------------------------------------------
 MultAmp = (VapoPyro*(1+BonusAmpEM+BonusAmpReac))**TriggerReact
-MultTrans = (Burn*BonusCharLevel*(1+BonusTransEM+BonusTransReac)*EnemyReduct)**TriggerReact
+MultTrans = (ElecCharg*BonusCharLevel*(1+BonusTransEM+BonusTransReac)*EnemyRes)**TriggerReact
 
 #DANO DOS TALENTOS
 AtaqueNormal = AtaqueTotal*1*(1+DanoElemental+BonusAA)*EnemyReduct*(1+DanoCritico)
 Skill =
 Ult =
+DPR =
 
 #EXIBICAO
 print(f'< {Nome} >')
@@ -180,4 +182,4 @@ print(f'Ataque Normal: {int(AtaqueNormal)}')
 print(f'Skill: {int(Skill)}')
 print(f'Ult: {int(Ult)}')
 print('')
-print(f'Dano Rotacao: {int()}')
+print(f'DPR: {int(DPR)}')
