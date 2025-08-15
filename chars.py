@@ -544,44 +544,6 @@ print(f'Ult: {int(Ult)}')
 print('')
 print(f'DPR: {int(DPR)}')
 
-#Lanyan
-Nome = 'LanYan'
-VidaBase = 9244
-AtaqueChar = 250
-AtaqueArma = weapons.atlas_cel_base
-AtaqueBase = AtaqueChar + AtaqueArma
-DefesaBase = 580
-StatusAscensao = 0.24
-#--------------------------------------
-VidaFlat = 0
-VidaPorc = 0
-AtaqueFlat = 0 
-AtaquePorc = 0 +StatusAscensao +weapons.atlas_cel_stat +0.4
-DefesaFlat = 0
-DefesaPorc = 0
-EM = 0
-RecargaPorc = 0
-CritDmg = 0 +0.5
-CritRate = 0 +0.2
-BonusElm = 0 +weapons.atlas_cel_p1 +relics.sombra_verde_2
-BonusFis = 0
-BonusAA = 0 
-BonusCarregado = 0
-BonusImersivo = 0
-BonusSkill = 0
-BonusUlt = 0
-BonusAditivo = 0
-#--------------------------------------
-Skill_Shield0 = 4.97*AtaqueTotal+2542
-Skill_Shield3 = 5.87*AtaqueTotal+3178
-Ult = (AtaqueTotal*4.33)*(1+DanoElemental+BonusUlt)*EnemyReduct*(1+DanoCritico)
-DPR = Ult*3
-print('< Talentos >')
-print(f'Skill (shield c0): {int(Skill_Shield0)}')
-print(f'Skill (shield c3): {int(Skill_Shield3)}')
-print(f'Ult: {int(Ult)}')
-print('')
-print(f'DPR: {int(DPR)}')
 
 #Sethos
 Nome = 'Sethos'
