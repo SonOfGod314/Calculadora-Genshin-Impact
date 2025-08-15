@@ -9,13 +9,13 @@ print('---------------------')
 print('')
 
 #STATUS BASE
-Nome = 'nome'
-VidaBase = 
-AtaqueChar = 
-AtaqueArma = 
+Nome = 'Skirk'
+VidaBase = 12417
+AtaqueChar = 358.77
+AtaqueArma = weapons.blacksword_base
 AtaqueBase = AtaqueChar + AtaqueArma
-DefesaBase = 
-StatusAscensao =
+DefesaBase = 806
+StatusAscensao = 0.384
 
 #VALOR DOS ARTEFATOS NO +20
 FlorVida = 4780
@@ -41,7 +41,7 @@ CoroaCura = 0.359
 
 #SELETOR DE ARTEFATOS
 AreiaVida_S = 0
-AreiaAtaque_S = 0
+AreiaAtaque_S = 1
 AreiaDefesa_S = 0
 AreiaEM_S = 0
 AreiaER_S = 0
@@ -50,7 +50,7 @@ CaliceVida_S = 0
 CaliceAtaque_S = 0
 CaliceDefesa_S = 0
 CaliceEM_S = 0
-CaliceED_S = 0
+CaliceED_S = 1
 CalicePD_S = 0
 #--------------------
 CoroaVida_S = 0
@@ -58,7 +58,7 @@ CoroaAtaque_S = 0
 CoroaDefesa_S = 0
 CoroaEM_S = 0
 CoroaCR_S = 0
-CoroaCD_S = 0
+CoroaCD_S = 1
 CoroaCura_S = 0
 
 #RESSONANCIAS
@@ -69,23 +69,26 @@ resso_cryo = 0.15
 resso_dendro = 20
 
 #SUB-STATUS + BÔNUS DIVERSOS
+tal_buff_aa = 0.7
+tal_buff_ult = 0.6 
 VidaFlat = 0
 VidaPorc = 0
-AtaqueFlat = 0 
-AtaquePorc = 0 
+AtaqueFlat = 0  
+AtaquePorc = 0 +0.5
 DefesaFlat = 0
 DefesaPorc = 0
 EM = 0
 RecargaPorc = 0
-CritDmg = 0 
-CritRate = 0
-BonusElm = 0 
+CritDmg = 0 +StatusAscensao +0.5
+CritRate = 0 +0.25 +resso_cryo +weapons.blacksword_stat
+BonusElm = 0 +relics.epi_cor_2 +sups.furina_ult
 BonusFis = 0
-BonusAA = 0 
-BonusCarregado = 0
+BonusAA = 0 +tal_buff_aa +relics.epi_cor_4 +weapons.blacksword_p1
+BonusCarregado = 0 
 BonusImersivo = 0
 BonusSkill = 0
-BonusUlt = 0
+BonusUlt = 0 +tal_buff_ult +relics.epi_cor_4
+BonusAditivo = 0
 
 #MULTIPLICADORES
 MultVida = 1+(AreiaVida_S*AreiaVida)+(CaliceVida_S*CaliceVida)+(CoroaVida_S*CoroaVida)+VidaPorc
@@ -108,7 +111,7 @@ EnemyLevel = 103
 EnemyResEl = 0.1
 EnemyResFis = 0.1
 ReductDef = 0
-ReductRes = 0
+ReductRes = 0 +sups.escoff_debuff
 #-------------------------------------------------------
 RD = 1-ReductDef
 EnemyDef = 190/(RD*(EnemyLevel+100)+190)
@@ -122,7 +125,7 @@ elif RR >= 0.75:
 EnemyReduct = EnemyDef*EnemyRes  
 print('< Inimigo >')
 print(f'Nivel: {int(EnemyLevel)}')
-print(f'Resistencia: {int((RR)*100)}%')
+print(f'Resistencia: {int((1-EnemyRes)*100)}%')
 print(f'Defesa: {int((1-EnemyDef)*100)}%')
 print(f'Dano Tankado: {int((1-EnemyReduct)*100)}%')
 print('')
@@ -153,10 +156,19 @@ MultAmp = (VapoPyro*(1+BonusAmpEM+BonusAmpReac))**TriggerReact
 MultTrans = (ElecCharg*BonusCharLevel*(1+BonusTransEM+BonusTransReac)*EnemyRes)**TriggerReact
 
 #DANO DOS TALENTOS
-AtaqueNormal = AtaqueTotal*1*(1+DanoElemental+BonusAA)*EnemyReduct*(1+DanoCritico)
-Skill =
-Ult =
-DPR =
+StackSerpent = 12 #max=12
+Ult_B1 = (0.347*AtaqueTotal)*StackSerpent
+StackVoid = 3 #max=3
+Ult_B2 = (StackVoid+2)*0.04
+BonusAA = BonusAA + Ult_B2
+Skill_H1 = (AtaqueTotal*2.62+BonusAditivo)*(1+DanoElemental+BonusAA)*EnemyReduct*(1+DanoCritico)
+Skill_H2 = (AtaqueTotal*2.36+BonusAditivo)*(1+DanoElemental+BonusAA)*EnemyReduct*(1+DanoCritico)
+Skill_H3 = (AtaqueTotal*1.49+BonusAditivo)*(1+DanoElemental+BonusAA)*EnemyReduct*(1+DanoCritico)
+Skill_H4 = (AtaqueTotal*1.59+BonusAditivo)*(1+DanoElemental+BonusAA)*EnemyReduct*(1+DanoCritico)
+Skill_H5 = (AtaqueTotal*3.88+BonusAditivo)*(1+DanoElemental+BonusAA)*EnemyReduct*(1+DanoCritico)
+Ult_H1 = (AtaqueTotal*2.20+BonusAditivo+Ult_B1)*(1+DanoElemental+BonusUlt)*EnemyReduct*(1+DanoCritico)
+Ult_H2 = (AtaqueTotal*3.68+BonusAditivo+Ult_B1)*(1+DanoElemental+BonusUlt)*EnemyReduct*(1+DanoCritico)
+DPR = (Ult_H1*5)+Ult_H2+(Skill_H1+Skill_H2+(Skill_H3*2)+(Skill_H4*2)+Skill_H5)*2
 
 #EXIBICAO
 print(f'< {Nome} >')
@@ -178,8 +190,12 @@ print(f'Amplificador de Reacao: {(MultAmp):.2f}')
 print(f'Reacao Transformativa: {int(MultTrans)}')
 print('')
 print('< Talentos >')
-print(f'Ataque Normal: {int(AtaqueNormal)}')
-print(f'Skill: {int(Skill)}')
-print(f'Ult: {int(Ult)}')
+print(f'Hit 1: {int(Skill_H1)}')
+print(f'Hit 2: {int(Skill_H2)}')
+print(f'Hit 3: {int(Skill_H3)}')
+print(f'Hit 4: {int(Skill_H4)}')
+print(f'Hit 5: {int(Skill_H5)}')
+print(f'Ult (slash): {int(Ult_H1)}')
+print(f'Ult (explosion): {int(Ult_H2)}')
 print('')
 print(f'DPR: {int(DPR)}')

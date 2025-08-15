@@ -76,3 +76,54 @@ ultimo_acorde_base = 510
 ultimo_acorde_stat = 165
 ultimo_acorde_p1 = 0.48
 
+#calamidade_eshu_R5
+cal_eshu_base = 565
+cal_eshu_stat = 0.276
+cal_eshu_p1 = 0.4 
+cal_eshu_p2 = 0.16
+
+#chuva_floral_R5
+chuva_floral_base = 510
+chuva_floral_stat = 165
+chuva_floral_p1 = 0.32
+
+#guia_magia_R5
+guia_magia_base = 354
+guia_magia_stat = 187
+guia_magia_p1 = 0.24 #DMG vs Hydro/Electro
+
+#mappa_mare_R5
+mappa_mare_base = 565
+mappa_mare_stat = 110
+mappa_mare_stacks = 1 #max = 2
+mappa_mare_p1 = 0.16*mappa_mare_stacks #DMG 
+
+#memorias_sacrificio
+mem_sac_base = 454
+mem_sac_stat = 221
+
+#atlas_celestial
+atlas_cel_base = 674
+atlas_cel_stat = 0.33
+atlas_cel_p1 = 0.12 #E.DMG
+
+#estilingue_R5
+estlg_base = 354
+estlg_stat = 0.312
+estlg_p1 = 0.6
+
+#cortadora_neblina
+cort_neb_base = 674
+cort_neb_stat = 0.44
+cort_neb_p1 = 0.12
+cort_neb_p2 = 0.28
+
+#foice_do_penhasco_obscuro
+blacklif_foice_base = 510
+blacklif_foice_stat = 0.55
+blacklif_foice_p1 = 0.12
+
+#espada_negra
+blacksword_base = 510
+blacksword_stat = 0.27
+blacksword_p1 = 0.2

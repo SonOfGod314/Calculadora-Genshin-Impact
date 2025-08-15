@@ -7,7 +7,7 @@ AtaqueArma = weapons.earthshaker_base
 AtaqueBase = AtaqueChar + AtaqueArma
 DefesaBase = 802
 StatusAscensao = 0.384
-#---------------------------------
+#---------------------------------se
 VidaFlat = 0
 VidaPorc = 0
 AtaqueFlat = 0 +35 +18 +51 +sups.benny_ult
@@ -18,7 +18,7 @@ EM = 0
 RecargaPorc = 0
 CritDmg = 0 +0.14 +0.14 +0.078 +0.062 +0.08 +StatusAscensao
 CritRate = 0 +0.25 +relics.codice_obsidiana_4
-BonusElm = 0 +relics.codice_obsidiana_2 #+relics.perg_hero_4
+BonusElm = 0 +relics.codice_obsidiana_2 +relics.perg_hero_4 +sups.mavuika_buff
 BonusFis = 0
 BonusAA = 0 +0.15
 BonusCarregado = 0
@@ -31,13 +31,14 @@ SkillDisparos = AtaqueTotal*1.03*(1+DanoElemental+BonusAA)*EnemyReduct*(1+DanoCr
 SkillCanhaoBuffado = (AtaqueTotal*12.37+Talento)*(1+DanoElemental+BonusSkill)*EnemyReduct*(1+DanoCritico)
 SkillCanhao = (AtaqueTotal*12.37)*(1+DanoElemental+BonusSkill)*EnemyReduct*(1+DanoCritico)
 Ult = AtaqueTotal*2.05*(1+DanoElemental+BonusUlt)*EnemyReduct*(1+DanoCritico)
+DPR = ((SkillDisparos*4+SkillCanhaoBuffado+Ult)*1)+((SkillDisparos*4+SkillCanhao+Ult)*3)
 print('< Talentos >')
 print(f'Skill (AA): {int(SkillDisparos)}')
 print(f'Skill (canhao 1): {int(SkillCanhaoBuffado)}')
 print(f'Skill (canhao 2/3/4): {int(SkillCanhao)}')
 print(f'Ult (laser): {int(Ult)}')
 print('')
-print(f'Dano Rotacao: {int(((SkillDisparos*4+SkillCanhaoBuffado+Ult)*1)+((SkillDisparos*4+SkillCanhao+Ult)*3))}')
+print(f'Dano Rotacao: {int(DPR)}')
 
 #Gaming
 Nome = 'Gaming'
@@ -295,27 +296,28 @@ StatusAscensao = 0.192
 VidaFlat = 0
 VidaPorc = 0
 AtaqueFlat = 0 +sups.benny_ult
-AtaquePorc = 0 +0.3 +weapons.cancao_silencio_stat +relics.ritual_real_4
+AtaquePorc = 0 +0.3 +weapons.cancao_silencio_stat +relics.ritual_real_4 +relics.milelith_4
 DefesaFlat = 0
 DefesaPorc = 0
 EM = 0 +100
 RecargaPorc = 0
 CritDmg = 0 +0.4 +sups.faruzan_c6
 CritRate = 0 +0.25 +StatusAscensao
-BonusElm = 0 +weapons.cancao_silencio_p1 +relics.cronicas_deserto_2 +sups.furina_ult +sups.faruzan_ult_buff
+BonusElm = 0 +weapons.cancao_silencio_p1 +relics.cronicas_deserto_2 +sups.furina_ult
 BonusFis = 0
 BonusAA = 0 +relics.cronicas_deserto_4
 BonusCarregado = 0 +relics.cronicas_deserto_4
 BonusImersivo = 0
 BonusSkill = 0
 BonusUlt = 0
-BonusFaruzanPassiva = sups.faruzan_passiva
+BonusAditivo = 0
 #--------------------------------------
-Skill_NormalShots = (AtaqueTotal*1.09+BonusFaruzanPassiva)*(1+DanoElemental+BonusCarregado)*EnemyReduct*(1+DanoCritico)
-Skill_ShineShots = (AtaqueTotal*3.45+BonusFaruzanPassiva)*(1+DanoElemental+BonusCarregado)*EnemyReduct*(1+DanoCritico)
-Ult_NormalShells = (AtaqueTotal*1.86+BonusFaruzanPassiva)*(1+DanoElemental+BonusUlt)*EnemyReduct*(1+DanoCritico)
-Ult_RadiantShells = (AtaqueTotal*3.72+BonusFaruzanPassiva)*(1+DanoElemental+BonusUlt)*EnemyReduct*(1+DanoCritico)
-DPR = Ult_NormalShells*2+Ult_RadiantShells*4+(Skill_NormalShots*4+Skill_ShineShots*2)*4
+Passiva1 = 0.65 #(stacks = 0.15/0.35/0.65)
+Skill_NormalShots = (AtaqueTotal*0.87+BonusAditivo)*(1+DanoElemental+BonusCarregado)*EnemyReduct*(1+DanoCritico)
+Skill_ShineShots = (AtaqueTotal*3+BonusAditivo)*(1+DanoElemental+BonusCarregado+Passiva1)*EnemyReduct*(1+DanoCritico)
+Ult_NormalShells = (AtaqueTotal*1.86+BonusAditivo)*(1+DanoElemental+BonusUlt)*EnemyReduct*(1+DanoCritico)
+Ult_RadiantShells = (AtaqueTotal*3.72)*(1+DanoElemental+BonusUlt)*EnemyReduct*(1+DanoCritico)
+DPR = Ult_NormalShells*2+Ult_RadiantShells*4+(Skill_NormalShots*2+Skill_ShineShots*4)*4
 print('< Talentos >')
 print(f'Skill (N-shots): {int(Skill_NormalShots)}')
 print(f'Skill (S-shots): {int(Skill_ShineShots)}')
@@ -363,5 +365,267 @@ print(f'Passiva: {int(Passiva)}')
 print(f'Reacao: {int(Reacao)}')
 print('')
 print(f'DPR: {int(DPR)}')
+
+#Ayato
+Nome = 'Ayato'
+VidaBase = 13715
+AtaqueChar = 299
+AtaqueArma = weapons.cal_eshu_base
+AtaqueBase = AtaqueChar + AtaqueArma
+DefesaBase = 769
+StatusAscensao = 0.384
+#--------------------------------------
+Buff_Ult = 0.2
+VidaFlat = 0 +1000
+VidaPorc = 0 +0.2
+AtaqueFlat = 0
+AtaquePorc = 0 +weapons.cal_eshu_stat +0.3 +relics.sonho_ninfa_4_2 +relics.ritual_real_4
+DefesaFlat = 0
+DefesaPorc = 0
+EM = 0 +sups.diona_c6
+RecargaPorc = 0
+CritDmg = 0 +StatusAscensao +0.4
+CritRate = 0 +weapons.cal_eshu_p2 +0.25
+BonusElm = 0 +relics.sonho_ninfa_2 +relics.sonho_ninfa_4_1 +resso_geo +relics.perg_hero_4
+BonusFis = 0
+BonusAA = 0 +weapons.cal_eshu_p1 +Buff_Ult +sups.yunjin_c2
+BonusCarregado = 0
+BonusImersivo = 0
+BonusSkill = 0
+BonusUlt = 0
+BonusAditivo = 0 +sups.yunjin_ult
+#--------------------------------------
+Skill_Passiva = 0.011*VidaTotal*4 #stack máximo = 4
+Skill_H1 = (AtaqueTotal*1.04+BonusAditivo+Skill_Passiva)*(1+DanoElemental+BonusAA)*EnemyReduct*MultAmp*(1+DanoCritico)
+Skill_H2 = (AtaqueTotal*1.16+BonusAditivo+Skill_Passiva)*(1+DanoElemental+BonusAA)*EnemyReduct*MultAmp*(1+DanoCritico)
+Skill_H3 = (AtaqueTotal*1.28+BonusAditivo+Skill_Passiva)*(1+DanoElemental+BonusAA)*EnemyReduct*MultAmp*(1+DanoCritico)
+Ult = (AtaqueTotal*1.19+BonusAditivo)*(1+DanoElemental+BonusUlt)*EnemyReduct*(1+DanoCritico)
+DPR = (Skill_H1+Skill_H2+Skill_H3)*6
+print('< Talentos >')
+print(f'Skill (hit 1): {int(Skill_H1)}')
+print(f'Skill (hit 2): {int(Skill_H2)}')
+print(f'Skill (hit 3): {int(Skill_H3)}')
+print(f'Ult: {int(Ult)}')
+print('')
+print(f'DPR: {int(DPR)}')
+
+#Mavuika
+Nome = 'Mavuika'
+VidaBase = 12552
+AtaqueChar = 358
+AtaqueArma = weapons.blacklif_foice_base
+AtaqueBase = AtaqueChar + AtaqueArma
+DefesaBase = 791
+StatusAscensao = 0.38
+#--------------------------------------
+PassivaBuff = 0.5
+VidaFlat = 0
+VidaPorc = 0
+AtaqueFlat = 0 +37 +33 +14 +sups.iansan_ult 
+AtaquePorc = 0 +0.14 +0.16 +0.09 +resso_pyro +relics.ritual_real_4 +sups.iansan_c2 +sups.chev_buff
+DefesaFlat = 0
+DefesaPorc = 0
+EM = 0
+RecargaPorc = 0
+CritDmg = 0 +0.21 +0.07 +0.13 +0.11 +StatusAscensao +weapons.blacklif_foice_stat
+CritRate = 0 +0.6
+BonusElm = 0 +relics.perg_hero_4 +PassivaBuff +sups.chev_c6
+BonusFis = 0
+BonusAA = 0 
+BonusCarregado = 0
+BonusImersivo = 0
+BonusSkill = 0
+BonusUlt = 0
+BonusAditivo = 0
+#--------------------------------------
+UltBuffExplosion = 0.0288*AtaqueTotal*200
+UltBuffMotoHits = 0.0051*AtaqueTotal*200
+UltBuffMotoCharg = 0.0102*AtaqueTotal*200
+SkillRemote = (AtaqueTotal*2.3+BonusAditivo)*(1+DanoElemental+BonusSkill)*EnemyReduct*(1+DanoCritico)
+SkillCharg = (AtaqueTotal*1.955+BonusAditivo+UltBuffMotoCharg)*(1+DanoElemental+BonusCarregado)*EnemyReduct*(1+DanoCritico)
+Ult = (AtaqueTotal*8+BonusAditivo+UltBuffExplosion)*(1+DanoElemental+BonusUlt)*EnemyReduct*(1+DanoCritico)
+DPR = (SkillCharg)*8+(SkillRemote)*6+Ult
+print('< Talentos >')
+print(f'SkillRemote: {int(SkillRemote)}')
+print(f'SkillCharged: {int(SkillCharg)}')
+print(f'Ult: {int(Ult)}')
+print('')
+print(f'DPR: {int(DPR)}')
+
+#Viajante Pyro
+Nome = 'Viajante Pyro'
+VidaBase = 10875
+AtaqueChar = 212
+AtaqueArma = weapons.chuva_floral_base
+AtaqueBase = AtaqueChar + AtaqueArma
+DefesaBase = 682
+StatusAscensao = 0.24
+#--------------------------------------
+c1 = 0.12
+c4 = 0.2
+c6 = 0.4
+VidaFlat = 0
+VidaPorc = 0
+AtaqueFlat = 0 +sups.benny_ult
+AtaquePorc = 0 +StatusAscensao +resso_pyro +0.5 +relics.ritual_real_4
+DefesaFlat = 0
+DefesaPorc = 0
+EM = 0 +weapons.chuva_floral_stat +100
+RecargaPorc = 0
+CritDmg = 0 +c6 +0.4
+CritRate = 0 +0.25 +relics.codice_obsidiana_4
+BonusGeral = 0 +weapons.chuva_floral_p1 +c1 +relics.codice_obsidiana_2
+BonusElm = 0 +c4 +sups.benny_c6 +relics.perg_hero_4
+BonusFis = 0
+BonusAA = 0 
+BonusCarregado = 0
+BonusImersivo = 0
+BonusSkill = 0
+BonusUlt = 0
+BonusAditivo = 0
+#--------------------------------------
+AtaqueNormal1 = (AtaqueTotal*1.06+BonusAditivo)*(1+DanoElemental+BonusAA)*EnemyReduct*MultAmp*(1+DanoCritico)
+AtaqueNormal2 = (AtaqueTotal*1.04+BonusAditivo)*(1+DanoElemental+BonusAA)*EnemyReduct*MultAmp*(1+DanoCritico)
+AtaqueNormal3 = (AtaqueTotal*1.26+BonusAditivo)*(1+DanoElemental+BonusAA)*EnemyReduct*MultAmp*(1+DanoCritico)
+AtaqueNormal4 = (AtaqueTotal*1.39+BonusAditivo)*(1+DanoElemental+BonusAA)*EnemyReduct*MultAmp*(1+DanoCritico)
+AtaqueNormal5 = (AtaqueTotal*1.69+BonusAditivo)*(1+DanoElemental+BonusAA)*EnemyReduct*MultAmp*(1+DanoCritico)
+Skill = (AtaqueTotal*1.94+BonusAditivo)*(1+DanoElemental+BonusSkill)*EnemyReduct*MultAmp*(1+DanoCritico)
+Ult = (AtaqueTotal*9+BonusAditivo)*(1+DanoElemental+BonusUlt)*EnemyReduct*MultAmp*(1+DanoCritico)
+DPR = (AtaqueNormal1+AtaqueNormal2+AtaqueNormal3+AtaqueNormal4+AtaqueNormal5)*3+Skill*5+Ult
+print('< Talentos >')
+print(f'Ataque Normal (H1): {int(AtaqueNormal1)}')
+print(f'Ataque Normal (H2): {int(AtaqueNormal2)}')
+print(f'Ataque Normal (H3): {int(AtaqueNormal3)}')
+print(f'Ataque Normal (H4): {int(AtaqueNormal4)}')
+print(f'Ataque Normal (H5): {int(AtaqueNormal5)}')
+print(f'Skill: {int(Skill)}')
+print(f'Ult: {int(Ult)}')
+print('')
+print(f'DPR: {int(DPR)}')
+
+#Citlali
+Nome = 'Citlali'
+VidaBase = 11634
+AtaqueChar = 126
+AtaqueArma = weapons.mem_sac_base
+AtaqueBase = AtaqueChar + AtaqueArma
+DefesaBase = 763
+StatusAscensao = 115
+#--------------------------------------
+VidaFlat = 0
+VidaPorc = 0 +relics.milelith_2
+AtaqueFlat = 0 
+AtaquePorc = 0 +0.5 +relics.milelith_4_1
+DefesaFlat = 0
+DefesaPorc = 0
+EM = 0 +StatusAscensao +weapons.mem_sac_stat +200
+RecargaPorc = 0
+CritDmg = 0 
+CritRate = 0 +resso_cryo +0.25
+BonusElm = 0 
+BonusFis = 0
+BonusAA = 0 
+BonusCarregado = 0
+BonusImersivo = 0
+BonusSkill = 0
+BonusUlt = 0
+BonusP1 = 0.9*((AreiaEM_S*AreiaEM)+(CaliceEM_S*CaliceEM)+(CoroaEM_S*CoroaEM)+EM)
+BonusP2 = 24*((AreiaEM_S*AreiaEM)+(CaliceEM_S*CaliceEM)+(CoroaEM_S*CoroaEM)+EM)
+BonusAditivo = 0
+#--------------------------------------
+SkillShield = (10.36*MaestriaElemental+3050)*(1+relics.milelith_4_2)
+SkillHits = (AtaqueTotal*0.3+BonusP1)*(1+DanoElemental+BonusSkill)*EnemyReduct*MultAmp*(1+DanoCritico)
+Ult = (AtaqueTotal*9.67+BonusP2)*(1+DanoElemental+BonusUlt)*EnemyReduct*MultAmp*(1+DanoCritico)
+DPR = SkillHits*10+Ult
+print('< Talentos >')
+print(f'Skill (shield): {int(SkillShield)}')
+print(f'Skill (hits): {int(SkillHits)}')
+print(f'Ult: {int(Ult)}')
+print('')
+print(f'DPR: {int(DPR)}')
+
+#Lanyan
+Nome = 'LanYan'
+VidaBase = 9244
+AtaqueChar = 250
+AtaqueArma = weapons.atlas_cel_base
+AtaqueBase = AtaqueChar + AtaqueArma
+DefesaBase = 580
+StatusAscensao = 0.24
+#--------------------------------------
+VidaFlat = 0
+VidaPorc = 0
+AtaqueFlat = 0 
+AtaquePorc = 0 +StatusAscensao +weapons.atlas_cel_stat +0.4
+DefesaFlat = 0
+DefesaPorc = 0
+EM = 0
+RecargaPorc = 0
+CritDmg = 0 +0.5
+CritRate = 0 +0.2
+BonusElm = 0 +weapons.atlas_cel_p1 +relics.sombra_verde_2
+BonusFis = 0
+BonusAA = 0 
+BonusCarregado = 0
+BonusImersivo = 0
+BonusSkill = 0
+BonusUlt = 0
+BonusAditivo = 0
+#--------------------------------------
+Skill_Shield0 = 4.97*AtaqueTotal+2542
+Skill_Shield3 = 5.87*AtaqueTotal+3178
+Ult = (AtaqueTotal*4.33)*(1+DanoElemental+BonusUlt)*EnemyReduct*(1+DanoCritico)
+DPR = Ult*3
+print('< Talentos >')
+print(f'Skill (shield c0): {int(Skill_Shield0)}')
+print(f'Skill (shield c3): {int(Skill_Shield3)}')
+print(f'Ult: {int(Ult)}')
+print('')
+print(f'DPR: {int(DPR)}')
+
+#Sethos
+Nome = 'Sethos'
+VidaBase = 9787
+AtaqueChar = 227
+AtaqueArma = weapons.estlg_base
+AtaqueBase = AtaqueChar + AtaqueArma
+DefesaBase = 560
+StatusAscensao = 96
+#--------------------------------------
+Sethos_C2 = 0.3
+VidaFlat = 0 
+VidaPorc = 0
+AtaqueFlat = 0 +51 +27 +62 +27 +sups.iansan_ult
+AtaquePorc = 0 +0.093 +sups.iansan_c2 +relics.ritual_real_4
+DefesaFlat = 0
+DefesaPorc = 0
+EM = 0 +StatusAscensao +resso_dendro +relics.trupe_iti_2 +58 +sups.nahida_buff
+RecargaPorc = 0
+CritDmg = 0 +0.179 +0.241 +0.249 +0.117
+CritRate = 0 +weapons.estlg_stat +0.039 +0.058 +0.035 +0.062
+BonusElm = 0 +weapons.estlg_p1 +Sethos_C2 +relics.perg_hero_4 +sups.iansan_c6
+BonusFis = 0
+BonusAA = 0 
+BonusCarregado = 0 +relics.trupe_iti_4
+BonusImersivo = 0
+BonusSkill = 0
+BonusUlt = 0
+#--------------------------------------
+BonusAditivo = 0 +(3.53*MaestriaElemental)+AddCat
+AtaqueCarregado_H1 = (AtaqueTotal*0.96+BonusAditivo)*(1+DanoElemental+BonusCarregado)*EnemyReduct*(1+DanoCritico)
+AtaqueCarregado_H2 = (AtaqueTotal*0.43+BonusAditivo)*(1+DanoElemental+BonusCarregado)*EnemyReduct*(1+DanoCritico)
+AtaqueCarregado_H3 = (AtaqueTotal*0.48+BonusAditivo)*(1+DanoElemental+BonusCarregado)*EnemyReduct*(1+DanoCritico)
+AtaqueCarregado_H4 = (AtaqueTotal*1.35+BonusAditivo)*(1+DanoElemental+BonusCarregado)*EnemyReduct*(1+DanoCritico)
+DPR = (AtaqueCarregado_H1+AtaqueCarregado_H2+AtaqueCarregado_H3+AtaqueCarregado_H4)*4
+print('< Talentos >')
+print(f'Flecha Crepusculo H1: {int(AtaqueCarregado_H1)}')
+print(f'Flecha Crepusculo H2: {int(AtaqueCarregado_H2)}')
+print(f'Flecha Crepusculo H3: {int(AtaqueCarregado_H3)}')
+print(f'Flecha Crepusculo H4: {int(AtaqueCarregado_H4)}')
+print('')
+print(f'DPR: {int(DPR)}')
+
+
+
 
 
