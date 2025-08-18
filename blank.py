@@ -15,7 +15,7 @@ AtaqueChar =
 AtaqueArma = 
 AtaqueBase = AtaqueChar + AtaqueArma
 DefesaBase = 
-StatusAscensao =
+StatusAscensao = 
 
 #VALOR DOS ARTEFATOS NO +20
 FlorVida = 4780

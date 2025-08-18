@@ -587,7 +587,58 @@ print(f'Flecha Crepusculo H4: {int(AtaqueCarregado_H4)}')
 print('')
 print(f'DPR: {int(DPR)}')
 
-
+#Skirk
+Nome = 'Skirk'
+VidaBase = 12417
+AtaqueChar = 358.77
+AtaqueArma = weapons.blacksword_base
+AtaqueBase = AtaqueChar + AtaqueArma
+DefesaBase = 806
+StatusAscensao = 0.384
+tal_buff_aa = 0.7
+tal_buff_ult = 0.6 
+VidaFlat = 0
+VidaPorc = 0
+AtaqueFlat = 0  
+AtaquePorc = 0 +0.5
+DefesaFlat = 0
+DefesaPorc = 0
+EM = 0
+RecargaPorc = 0
+CritDmg = 0 +StatusAscensao +0.5
+CritRate = 0 +0.25 +resso_cryo +weapons.blacksword_stat
+BonusElm = 0 +relics.epi_cor_2 +sups.furina_ult
+BonusFis = 0
+BonusAA = 0 +tal_buff_aa +relics.epi_cor_4 +weapons.blacksword_p1
+BonusCarregado = 0 
+BonusImersivo = 0
+BonusSkill = 0
+BonusUlt = 0 +tal_buff_ult +relics.epi_cor_4
+BonusAditivo = 0
+StackSerpent = 12 #max=12
+Ult_B1 = (0.347*AtaqueTotal)*StackSerpent
+StackVoid = 3 #max=3
+Ult_B2 = (StackVoid+2)*0.04
+BonusAA = BonusAA + Ult_B2
+Skill_H1 = (AtaqueTotal*2.62+BonusAditivo)*(1+DanoElemental+BonusAA)*EnemyReduct*(1+DanoCritico)
+Skill_H2 = (AtaqueTotal*2.36+BonusAditivo)*(1+DanoElemental+BonusAA)*EnemyReduct*(1+DanoCritico)
+Skill_H3 = (AtaqueTotal*1.49+BonusAditivo)*(1+DanoElemental+BonusAA)*EnemyReduct*(1+DanoCritico)
+Skill_H4 = (AtaqueTotal*1.59+BonusAditivo)*(1+DanoElemental+BonusAA)*EnemyReduct*(1+DanoCritico)
+Skill_H5 = (AtaqueTotal*3.88+BonusAditivo)*(1+DanoElemental+BonusAA)*EnemyReduct*(1+DanoCritico)
+Ult_H1 = (AtaqueTotal*2.20+BonusAditivo+Ult_B1)*(1+DanoElemental+BonusUlt)*EnemyReduct*(1+DanoCritico)
+Ult_H2 = (AtaqueTotal*3.68+BonusAditivo+Ult_B1)*(1+DanoElemental+BonusUlt)*EnemyReduct*(1+DanoCritico)
+DPR = (Ult_H1*5)+Ult_H2+(Skill_H1+Skill_H2+(Skill_H3*2)+(Skill_H4*2)+Skill_H5)*2
+print('< Talentos >')
+print(f'Hit 1: {int(Skill_H1)}')
+print(f'Hit 2: {int(Skill_H2)}')
+print(f'Hit 3: {int(Skill_H3)}')
+print(f'Hit 4: {int(Skill_H4)}')
+print(f'Hit 5: {int(Skill_H5)}')
+print(f'Ult (slash): {int(Ult_H1)}')
+print(f'Ult (explosion): {int(Ult_H2)}')
+print('')
+print(f'DPR: {int(DPR)}')
+print('teste4')
 
 
 
